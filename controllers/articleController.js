@@ -1,0 +1,31 @@
+const db = require("../models");
+
+// Defining methods for the articleController
+module.exports = {
+    findAll: function(req, res) {
+        db.Article
+            .find(req.query)
+            .sort({date: -1})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    saveArticle: function(req, res) {
+        db.Article
+        .find({})
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    },
+    findSavedArticles: function(req, res) {
+        db.Article
+            .findSavedArticles(req.params.id)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    remove: function(req, res) {
+        db.Article
+            .findSavedArticles({ _id: req.params.id })
+            .then(dbModel => dbModel.remove())
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    }
+};

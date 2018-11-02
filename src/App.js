@@ -1,25 +1,64 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import API from "./utils/API";
+import Navbar from "./components/Navbar";
+import SearchForm from "./components/SearchForm";
+import Footer from "./components/Footer";
 import './App.css';
 
+
 class App extends Component {
+
+  state = {
+    topic: "",
+    startDate: "",
+    endDate: ""
+  };
+
+formSubmit = event => {
+  event.preventDefault();
+
+  const searchParams ={
+    query: this.state.topic,
+    start_date: this.state.startDate,
+    end_date: this.state.endDate
+  }
+
+  API.search(searchParams)
+  .then(results => {
+    const articles = results.data.response.docs;
+articles.forEach(article => {
+
+  const headline = article.headline.main;
+  const date = article.pub_date;
+  const url = article.web_url;
+  const snippet = article.snippet;
+
+})
+
+
+  })
+  
+}
+
+handleInputChange = event => {
+  const { name, value } = event.target;
+  this.setState({
+    [name]: value
+  });
+};
+
+
+
   render() {
     return (
+     
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <Navbar/>
+          <SearchForm
+          formSubmit = {this.formSubmit}
+          handleInputChange = {this.handleInputChange}
+          />
+      <Footer/>
       </div>
     );
   }

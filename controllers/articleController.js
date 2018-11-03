@@ -11,7 +11,7 @@ module.exports = {
     },
     saveArticle: function(req, res) {
         db.Article
-        .find({})
+        .create(req.body)
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },

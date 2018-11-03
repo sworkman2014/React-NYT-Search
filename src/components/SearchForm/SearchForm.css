@@ -1,0 +1,7 @@
+label {
+    color: ghostwhite;
+}
+
+input::placeholder {
+    font-family: 'Source Sans Pro', sans-serif;
+}

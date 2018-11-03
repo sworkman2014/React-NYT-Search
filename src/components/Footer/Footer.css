@@ -8,6 +8,10 @@
     width: 75px;
   }
 
+  span{
+    color: black;
+  }
+
 @keyframes App-logo-spin {
     from {
       transform: rotate(0deg);

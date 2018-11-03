@@ -1,51 +1,35 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import "./SearchForm.css";
   
-const SearchForm = (props) => {
+const SearchForm = props => {
     return(
-        <div>
+        <div className="container">
             
-        <form noValidate autoComplete="off">
-        <TextField
-          id="search-term"
-          label="Search Topic"
-          type="search"
-          margin="normal"
-          variant="outlined"
-          onChange={props.handleInputChange}
-          name="topic"
-        />
-         <TextField
-          id="begin-year"
-          label="Begin Year"
-          type="search"
-          margin="normal"
-          variant="outlined"
-          onChange={props.handleInputChange}
-          name="startDate"
-        />
-         <TextField
-          id="end-year"
-          label="End Year"
-          type="search"
-          margin="normal"
-          variant="outlined"
-          onChange={props.handleInputChange}
-          name="endDate"
-        />
-        </form>   
-        <Button variant="contained" color="primary" onClick={props.formSubmit}>
-            Submit
-        </Button>
+        <form>
+
+        <div id="search-term" className="form-group">
+          <label for="Search Topic"></label>
+          <input type="search" className="form-control" name="topic" placeholder="Search Term" onChange={props.handleInputChange}/>
         </div>
-       
+
+        <div id="begin-year" className="form-group">         
+          <label for="Begin Year"></label>
+          <input type="search" className="form-control" name="startDate" placeholder="Start Year" onChange={props.handleInputChange}/>
+        </div>
+
+        <div id="end-year" className="form-group">         
+          <label for="End Year"></label>
+          <input type="search" className="form-control" name="endDate" placeholder="End Year" onChange={props.handleInputChange}/>        
+        </div>
+
+        </form> 
+
+        <button type="submit" className="btn btn-primary" onClick={props.formSubmit}>
+            Submit
+        </button>
+
+        </div>       
     )
 }
-      
-
-        
     
-    
-
-  export default SearchForm;
+export default SearchForm;

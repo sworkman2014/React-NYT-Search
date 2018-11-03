@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
-import Container from "../../components/Container";
-import Footer from "../../components/Footer"
+import SearchForm from "../../components/SearchForm";
+import "./Home.css"
 
 class Home extends Component {
     state = {
-        articles: [],
-        title: "",
-        date: "",
-        url: ""
+        topic: "",
+        startDate: "",
+        endDate: "",
+        snippet:"",
+        articles: []
     };
 
     componentDidMount() {
@@ -17,46 +17,78 @@ class Home extends Component {
     }
 
     loadArticles = () => {
-        API.getArticles()
+        API.getSavedArticles()
             .then(res => 
-                this.setState({ articles: res.data, title: "", date: "", url: ""})
-            )
+                this.setState({ articles: res.data, topic: "", startDate: "", endDate: "", snippet: ""}))
             .catch(err => console.log(err));
     };
 
-    handleSaveArticle = event => {
-        API.saveArticle({
-            title: this.state.title,
-            date: this.state.date,
-            url: this.state.url
-        })
-            .then(res => this.loadArticles())
-            .catch(err => console.log(err));
-    };
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+     };
 
-    handleDeleteSavedArticle = id => {
-        API.handleDeleteSavedArticle(id)
-            .then(res => this.loadBooks())
-            .catch(err => console.log(err));
-    };
-
-    render() {
-        return (
-<div>
-    <Container>
-
-         {this.state.articles.map(article => (
-            <Link to={"/articles/" + article._id}>
-                <ul>{article.title} {article.date} {article.url}</ul>
-            </Link>
-            ))}
-        <Footer/>
-    </Container>
-   
-</div>
-        );
+    formSubmit = event => {
+        event.preventDefault();
+        API.search(this.state.topic, this.state.startDate, this.state.endDate, this.state.snippet)
+        .then(res => {
+          this.setState ({articles: res.data.response.docs})
+          console.log(res.data);    
+      })
+      .catch(error => console.log(error));          
+         
     }
 
+    saveArticle = event => {
+        event.preventDefault();
+        API.saveArticle({
+           topic: this.state.topic,
+           startDate: this.state.startDate,
+           endDate: this.state.endDate,
+           snippet: this.state.snippet
+       })
+       .then(res => this.loadArticles())
+       .catch(err => console.log(err));
+    };
+      
+    render() {
+        return (
+            <div className="bg">                
+                <SearchForm
+                    formSubmit = {this.formSubmit}
+                    handleInputChange = {this.handleInputChange}
+                />
+                
+                <div className="container">
+                <div className="row">
+                <div className="col md-12">
+
+                {this.state.articles.map(article =>(
+
+                <div className="card">
+                    <div className="card-body">
+                        <h5 className="card-title">{article.headline.main}</h5>
+                            <h6 className="card-subtitle mb-2 text-muted">{article.pub_date}</h6>
+                                <p className="card-text">{article.snippet}</p>
+                                    <button className="btn btn-outline-primary"><a href={article.web_url} target="_blank">Read</a></button>
+                                    <button href="#" className="btn btn-outline-secondary" onClick={this.saveArticle}>Save</button>
+                    </div>
+                </div>
+
+                ))}
+
+                </div>
+
+
+                </div>
+            </div>
+                  
+                              
+            </div>
+            );
+        }
 }
 
 export default Home;

@@ -65,9 +65,9 @@ class Home extends Component {
                 <div className="row">
                 <div className="col md-12">
 
-                {this.state.articles.map(article =>(
+                {this.state.articles.map((article, i) =>(
 
-                <div className="card">
+                <div key= {i} className="card">
                     <div className="card-body">
                         <h5 className="card-title">{article.headline.main}</h5>
                             <h6 className="card-subtitle mb-2 text-muted">{article.pub_date}</h6>

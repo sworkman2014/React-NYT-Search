@@ -3,11 +3,11 @@ const articleController = require("../../controllers/articleController");
 
 router.route("/")
     .get(articleController.findAll)
-    .post(articleController.create);
+    .post(articleController.saveArticle);
 
 router
     .route("/:id")
-    .get(articleController.findById)
+    .get(articleController.findSavedArticles)
     .delete(articleController.remove);
 
     module.exports = router;

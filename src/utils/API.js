@@ -8,8 +8,9 @@ export default {
     
      return axios.get(BASEURL + APIKEY + "&q=" +  query + "&begin_date=" + startYear + "0101&end_date=" + endYear + "1231");
     },
-    saveArticle: function() {
-        return axios.post("/api/saved");
+    saveArticle: function(newData) {
+        console.log(newData);
+        return axios.post("/api/saved", newData);
     },
     getSavedArticles: function() {
         return axios.get("/api/articles");

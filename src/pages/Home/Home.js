@@ -8,6 +8,8 @@ class Home extends Component {
         topic: "",
         startDate: "",
         endDate: "",
+        date: "",
+        url: "",
         snippet:"",
         articles: []
     };
@@ -44,10 +46,9 @@ class Home extends Component {
     saveArticle = event => {
         event.preventDefault();
         API.saveArticle({
-           topic: this.state.topic,
-           startDate: this.state.startDate,
-           endDate: this.state.endDate,
-           snippet: this.state.snippet
+           "title": this.state.topic,
+           "url": this.state.url,
+           "snippet": this.state.snippet
        })
        .then(res => this.loadArticles())
        .catch(err => console.log(err));

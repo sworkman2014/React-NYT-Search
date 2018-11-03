@@ -6,6 +6,8 @@ const articleController = require("../../controllers/articleController");
 // Article Routes
 router.use("/articles", articleRoutes);
 
-router.post("/saved", articleController.saveArticle);
+// /api/saved
+router.route("/saved")
+    .post(articleController.saveArticle);
 
 module.exports = router;

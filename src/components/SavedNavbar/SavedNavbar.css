@@ -15,10 +15,6 @@
     color: blue !important;
 }
 
-.btn.btn-primary {
-    background: blue;
-}
-
 .btn.btn-outline-light:hover {
     background: blue;
 }

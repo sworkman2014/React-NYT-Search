@@ -1,26 +1,32 @@
 import React from 'react';
 import "./SearchForm.css";
-  
+
+
 const SearchForm = props => {
+
     return(
         <div className="container">
-            
-        <form>
 
-        <div id="search-term" className="form-group">
-          <label for="Search Topic"></label>
-          <input type="search" className="form-control" name="topic" placeholder="Search Term" onChange={props.handleInputChange}/>
-        </div>
+        <form id="searchForm">
 
-        <div id="begin-year" className="form-group">         
-          <label for="Begin Year"></label>
-          <input type="search" className="form-control" name="startDate" placeholder="Start Year" onChange={props.handleInputChange}/>
-        </div>
-
-        <div id="end-year" className="form-group">         
-          <label for="End Year"></label>
-          <input type="search" className="form-control" name="endDate" placeholder="End Year" onChange={props.handleInputChange}/>        
-        </div>
+          <div className="form-row">
+            <div id="search-term" className="form-group col-md-12">
+              <label for="Search Topic"></label>
+              <input type="search" className="form-control" name="topic" placeholder="Search Term" onChange={props.handleInputChange}/>
+             </div>
+          </div>
+          
+          <div className="form-row align-items-center">
+            <div id="begin-year" className="form-group col-md-6">         
+              <label for="Begin Year"></label>
+              <input type="search" className="form-control" name="startDate" placeholder="Start Year" onChange={props.handleInputChange}/>
+            </div>
+         
+            <div id="end-year" className="form-group col-md-6">         
+              <label for="End Year"></label>
+              <input type="search" className="form-control" name="endDate" placeholder="End Year" onChange={props.handleInputChange}/>        
+            </div>
+          </div>
 
         </form> 
 

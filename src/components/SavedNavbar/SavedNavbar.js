@@ -1,9 +1,9 @@
 import React from 'react';
 import nyt_logo from "./nyt_logo.png";
-import "./Navbar.css";
+import "./SavedNavbar.css";
 
 
-const NavBar = () => {
+const SavedNavbar = () => {
     return(
         <nav id="app-title" className="navbar transparent">
             <a className="navbar-brand text-white" href="/">
@@ -13,9 +13,9 @@ const NavBar = () => {
             New York Times Article Search
             </a>
             <form className="form-inline">
-            <button className="btn btn-primary"><a className="saved-article-link text-white" href="/saved">Saved Articles</a></button>
+            <button className="btn btn-primary"><a className="saved-article-link text-white" href="/">Search Articles</a></button>
             </form>
         </nav>       
     )
 }
-export default NavBar;
+export default SavedNavbar;

@@ -1,3 +1,15 @@
-.container {
-    margin-top: 15%;
+.container-fluid {
+    margin-top: 5%;
+}
+
+.card {
+    margin-bottom: 5%;
+}
+
+.card-header {
+    font-family: 'Playfair Display', serif;
+}
+
+.card-body {
+    font-family: 'Source Sans Pro', sans-serif;
 }

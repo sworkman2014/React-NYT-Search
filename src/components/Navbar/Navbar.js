@@ -1,16 +1,19 @@
-import React from 'react'
+import React from 'react';
+import nyt_logo from "./nyt_logo.png";
 import "./Navbar.css";
 
 
 const NavBar = () => {
     return(
         <nav id="app-title" className="navbar transparent">
-            <a className="navbar-brand" href="/">
-                <img src="poweredby_nytimes_30a.png" width="30" height="30" className="d-inline-block align-top" alt=""></img>
+            <a className="navbar-brand text-white" href="/">
+            <a href= "http://developer.nytimes.com" target="_blank" rel="noopener noreferrer">
+                <img src={nyt_logo} width="30" height="30" className="d-inline-block align-top" alt=""></img>
+                </a>
             New York Times Article Search
             </a>
             <form className="form-inline">
-            <button className="btn btn-outline-light"><a className="saved-article-link" href="/saved">Saved Articles</a></button>
+            <button className="btn btn-outline-light"><a className="saved-article-link text-white" href="/saved">Saved Articles</a></button>
             </form>
         </nav>       
     )

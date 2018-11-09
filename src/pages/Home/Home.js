@@ -11,18 +11,7 @@ class Home extends Component {
         date: "",
         url: "",
         snippet:"",
-        articles: []
-    };
-
-    componentDidMount() {
-        this.loadArticles();
-    }
-
-    loadArticles = () => {
-        API.getSavedArticles()
-            .then(res => 
-                this.setState({ articles: res.data, topic: "", startDate: "", endDate: "", snippet: ""}))
-            .catch(err => console.log(err));
+        articles: [],
     };
 
     handleInputChange = event => {
@@ -43,38 +32,36 @@ class Home extends Component {
          
     }
 
-    saveArticle = event => {
-        event.preventDefault();
+    saveArticle = newData => {
         API.saveArticle({
-           "title": this.state.topic,
-           "url": this.state.url,
-           "snippet": this.state.snippet
+           "title": newData.headline.main,
+           "url": newData.web_url,
+           "snippet": newData.snippet
        })
-       .then(res => this.loadArticles())
+       .then(alert("The Article was Saved."))
        .catch(err => console.log(err));
     };
       
     render() {
         return (
-            <div className="bg">                
+            <div className="container-fluid">              
                 <SearchForm
                     formSubmit = {this.formSubmit}
                     handleInputChange = {this.handleInputChange}
                 />
-                
-                <div className="container">
+                               
                 <div className="row">
-                <div className="col md-12">
+                <div className="col md-6">
 
                 {this.state.articles.map((article, i) =>(
 
                 <div key= {i} className="card">
-                    <div className="card-body">
-                        <h5 className="card-title">{article.headline.main}</h5>
+                <h5 className="card-header">{article.headline.main}</h5>
+                    <div className="card-body">                       
                             <h6 className="card-subtitle mb-2 text-muted">{article.pub_date}</h6>
                                 <p className="card-text">{article.snippet}</p>
-                                    <button className="btn btn-outline-primary"><a href={article.web_url} target="_blank">Read</a></button>
-                                    <button href="#" className="btn btn-outline-secondary" onClick={this.saveArticle}>Save</button>
+                                    <button className="btn btn-outline-primary"><a href={article.web_url} target="_blank" rel="noopener noreferrer">Read</a></button>
+                                    <button href="#" className="btn btn-outline-success" onClick={()=>this.saveArticle(article)}>Save</button>
                     </div>
                 </div>
 
@@ -86,8 +73,6 @@ class Home extends Component {
                 </div>
             </div>
                   
-                              
-            </div>
             );
         }
 }

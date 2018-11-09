@@ -5,8 +5,11 @@
 
 #app-title {
     font-family: 'Playfair Display', serif; 
-}
-
-a{
     color: ghostwhite;
 }
+
+.btn.btn-outline-light:hover {
+    background: blue;
+}
+
+

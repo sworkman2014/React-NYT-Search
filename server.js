@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Serve Static Assets
-  app.use(express.static("public"));
+  // app.use(express.static("public"));
 
   if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));

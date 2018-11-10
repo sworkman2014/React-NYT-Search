@@ -12,7 +12,7 @@ import './App.css';
         <Switch>
          <Route exact path="/" component={Home} />
          <Route exact path="/home" component={Home} />
-         <Route exact path="/saved" component={Saved} />
+         <Route exact path="/saved-articles" component={Saved} />
          </Switch>
         <Footer/>
       </div>

@@ -1,6 +1,9 @@
 import React from 'react';
 import nyt_logo from "./nyt_logo.png";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
+
+          <Link className="nav-link" to="/saved">Saved Articles</Link>
 
 
 const NavBar = () => {
@@ -13,6 +16,8 @@ const NavBar = () => {
             New York Times Article Search
             </a>
             <form className="form-inline">
+            <Link className="nav-link" to="/saved">Saved Articles</Link>
+
             <button className="btn btn-primary"><a className="saved-article-link text-white" href="/saved">Saved Articles</a></button>
             </form>
         </nav>       

@@ -10,7 +10,7 @@ export default {
     },
     saveArticle: function(newData) {
         console.log(newData);
-        return axios.post("/api/saved", newData);
+        return axios.post("/api/articles", newData);
     },
     getSavedArticles: function() {
         return axios.get("/api/articles");
